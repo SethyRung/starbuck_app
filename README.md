@@ -155,3 +155,4 @@ This is a demo project for learning purposes. Feel free to fork and experiment w
 ## License
 
 Licensed under the MIT License. See [LICENSE](LICENSE) for details.
+This project follows the standard MIT license wording, granting broad reuse rights with attribution.
