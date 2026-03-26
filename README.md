@@ -151,3 +151,7 @@ flutter test
 ## Contributing
 
 This is a demo project for learning purposes. Feel free to fork and experiment with new features!
+
+## License
+
+Licensed under the MIT License. See [LICENSE](LICENSE) for details.
