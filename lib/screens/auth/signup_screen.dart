@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
+import 'package:lucide_icons/lucide_icons.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_typography.dart';
 import '../../providers/auth_provider.dart';
@@ -162,8 +163,8 @@ class _StepDot extends StatelessWidget {
               ),
               child: Center(
                 child: isCompleted
-                    ? const Icon(
-                        Icons.check_rounded,
+                    ? Icon(
+                        LucideIcons.check,
                         color: Colors.white,
                         size: 14,
                       )
@@ -223,8 +224,8 @@ class _StepOne extends StatelessWidget {
             label: 'Full Name',
             hint: 'CC Jr',
             controller: nameController,
-            prefix: const Icon(
-              Icons.person_outline,
+            prefix: Icon(
+              LucideIcons.user,
               color: AppColors.textSecondary,
               size: 20,
             ),
@@ -235,8 +236,8 @@ class _StepOne extends StatelessWidget {
             hint: 'you@example.com',
             controller: emailController,
             keyboardType: TextInputType.emailAddress,
-            prefix: const Icon(
-              Icons.email_outlined,
+            prefix: Icon(
+              LucideIcons.mail,
               color: AppColors.textSecondary,
               size: 20,
             ),
@@ -282,16 +283,16 @@ class _StepTwo extends StatelessWidget {
             hint: '••••••••',
             controller: passwordController,
             obscureText: obscure,
-            prefix: const Icon(
-              Icons.lock_outline_rounded,
+            prefix: Icon(
+              LucideIcons.lock,
               color: AppColors.textSecondary,
               size: 20,
             ),
             suffix: IconButton(
               icon: Icon(
                 obscure
-                    ? Icons.visibility_off_outlined
-                    : Icons.visibility_outlined,
+                    ? LucideIcons.eyeOff
+                    : LucideIcons.eye,
                 color: AppColors.textSecondary,
                 size: 20,
               ),

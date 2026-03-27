@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
+import 'package:lucide_icons/lucide_icons.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_typography.dart';
 import '../../providers/auth_provider.dart';
@@ -64,7 +66,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ],
                 ),
-                child: const Icon(Icons.local_cafe_rounded, color: Colors.white, size: 36),
+                child: Icon(LucideIcons.coffee, color: Colors.white, size: 36),
               ).animate().scale(duration: 600.ms, curve: Curves.elasticOut),
               const SizedBox(height: 24),
               Text('Welcome back', style: AppTypography.headingLarge(context))
@@ -78,7 +80,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 hint: 'you@example.com',
                 controller: _emailController,
                 keyboardType: TextInputType.emailAddress,
-                prefix: const Icon(Icons.email_outlined, color: AppColors.textSecondary, size: 20),
+                prefix: Icon(LucideIcons.mail, color: AppColors.textSecondary, size: 20),
               ).animate(delay: 200.ms).fadeIn().slideX(begin: -0.1, end: 0),
               const SizedBox(height: 16),
               AppTextField(
@@ -86,10 +88,10 @@ class _LoginScreenState extends State<LoginScreen> {
                 hint: '••••••••',
                 controller: _passwordController,
                 obscureText: _obscurePassword,
-                prefix: const Icon(Icons.lock_outline_rounded, color: AppColors.textSecondary, size: 20),
+                prefix: Icon(LucideIcons.lock, color: AppColors.textSecondary, size: 20),
                 suffix: IconButton(
                   icon: Icon(
-                    _obscurePassword ? Icons.visibility_off_outlined : Icons.visibility_outlined,
+                    _obscurePassword ? LucideIcons.eyeOff : LucideIcons.eye,
                     color: AppColors.textSecondary,
                     size: 20,
                   ),
@@ -127,11 +129,11 @@ class _LoginScreenState extends State<LoginScreen> {
               const SizedBox(height: 24),
               Row(
                 children: [
-                  _SocialButton(icon: Icons.apple, label: 'Apple', onTap: _signIn),
+                  _SocialButton(iconWidget: SvgPicture.asset('assets/icons/apple.svg', width: 20, height: 20), label: 'Apple', onTap: _signIn),
                   const SizedBox(width: 12),
-                  _SocialButton(icon: Icons.g_mobiledata_rounded, label: 'Google', onTap: _signIn),
+                  _SocialButton(iconWidget: SvgPicture.asset('assets/icons/google.svg', width: 20, height: 20), label: 'Google', onTap: _signIn),
                   const SizedBox(width: 12),
-                  _SocialButton(icon: Icons.facebook, label: 'Facebook', onTap: _signIn),
+                  _SocialButton(iconWidget: SvgPicture.asset('assets/icons/facebook.svg', width: 20, height: 20), label: 'Facebook', onTap: _signIn),
                 ],
               ).animate(delay: 400.ms).fadeIn(),
               const SizedBox(height: 32),
@@ -157,11 +159,11 @@ class _LoginScreenState extends State<LoginScreen> {
 }
 
 class _SocialButton extends StatelessWidget {
-  final IconData icon;
+  final Widget iconWidget;
   final String label;
   final VoidCallback onTap;
 
-  const _SocialButton({required this.icon, required this.label, required this.onTap});
+  const _SocialButton({required this.iconWidget, required this.label, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -178,7 +180,7 @@ class _SocialButton extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(icon, size: 20, color: AppColors.textPrimary),
+              iconWidget,
               const SizedBox(width: 6),
               Text(label, style: AppTypography.labelSmall(context)),
             ],
