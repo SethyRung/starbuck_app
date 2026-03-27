@@ -27,7 +27,9 @@ import 'route_names.dart';
 class AppRouter {
   AppRouter._();
 
-  static final _shellNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'shell');
+  static final _shellNavigatorKey = GlobalKey<NavigatorState>(
+    debugLabel: 'shell',
+  );
   static int _currentIndex = 0;
 
   static final router = GoRouter(
@@ -36,11 +38,13 @@ class AppRouter {
     routes: [
       GoRoute(
         path: RouteNames.splash,
-        pageBuilder: (context, state) => _buildPage(state, const SplashScreen()),
+        pageBuilder: (context, state) =>
+            _buildPage(state, const SplashScreen()),
       ),
       GoRoute(
         path: RouteNames.onboarding,
-        pageBuilder: (context, state) => _buildPage(state, const OnboardingScreen()),
+        pageBuilder: (context, state) =>
+            _buildPage(state, const OnboardingScreen()),
       ),
       GoRoute(
         path: RouteNames.login,
@@ -48,47 +52,59 @@ class AppRouter {
       ),
       GoRoute(
         path: RouteNames.signup,
-        pageBuilder: (context, state) => _buildPage(state, const SignupScreen()),
+        pageBuilder: (context, state) =>
+            _buildPage(state, const SignupScreen()),
       ),
       ShellRoute(
         navigatorKey: _shellNavigatorKey,
         builder: (context, state, child) {
           // Update current index based on route
           final path = state.uri.path;
-          if (path == RouteNames.home) _currentIndex = 0;
-          else if (path == RouteNames.menu) _currentIndex = 1;
-          else if (path == RouteNames.rewards) _currentIndex = 2;
-          else if (path == RouteNames.favorites) _currentIndex = 3;
-          else if (path == RouteNames.profile) _currentIndex = 4;
+          if (path == RouteNames.home) {
+            _currentIndex = 0;
+          } else if (path == RouteNames.menu)
+            _currentIndex = 1;
+          else if (path == RouteNames.rewards)
+            _currentIndex = 2;
+          else if (path == RouteNames.favorites)
+            _currentIndex = 3;
+          else if (path == RouteNames.profile)
+            _currentIndex = 4;
 
-          return AppShell(child: child, currentIndex: _currentIndex);
+          return AppShell(currentIndex: _currentIndex, child: child);
         },
         routes: [
           GoRoute(
             path: RouteNames.home,
-            pageBuilder: (context, state) => _buildFadePage(state, const HomeScreen()),
+            pageBuilder: (context, state) =>
+                _buildFadePage(state, const HomeScreen()),
           ),
           GoRoute(
             path: RouteNames.menu,
-            pageBuilder: (context, state) => _buildFadePage(state, const MenuScreen()),
+            pageBuilder: (context, state) =>
+                _buildFadePage(state, const MenuScreen()),
           ),
           GoRoute(
             path: RouteNames.rewards,
-            pageBuilder: (context, state) => _buildFadePage(state, const RewardsScreen()),
+            pageBuilder: (context, state) =>
+                _buildFadePage(state, const RewardsScreen()),
           ),
           GoRoute(
             path: RouteNames.favorites,
-            pageBuilder: (context, state) => _buildFadePage(state, const FavoritesScreen()),
+            pageBuilder: (context, state) =>
+                _buildFadePage(state, const FavoritesScreen()),
           ),
           GoRoute(
             path: RouteNames.profile,
-            pageBuilder: (context, state) => _buildFadePage(state, const ProfileScreen()),
+            pageBuilder: (context, state) =>
+                _buildFadePage(state, const ProfileScreen()),
           ),
         ],
       ),
       GoRoute(
         path: RouteNames.search,
-        pageBuilder: (context, state) => _buildPage(state, const SearchScreen()),
+        pageBuilder: (context, state) =>
+            _buildPage(state, const SearchScreen()),
       ),
       GoRoute(
         path: RouteNames.productDetail,
@@ -99,35 +115,43 @@ class AppRouter {
       ),
       GoRoute(
         path: RouteNames.cart,
-        pageBuilder: (context, state) => _buildBottomPage(state, const CartScreen()),
+        pageBuilder: (context, state) =>
+            _buildBottomPage(state, const CartScreen()),
       ),
       GoRoute(
         path: RouteNames.checkout,
-        pageBuilder: (context, state) => _buildPage(state, const CheckoutScreen()),
+        pageBuilder: (context, state) =>
+            _buildPage(state, const CheckoutScreen()),
       ),
       GoRoute(
         path: RouteNames.orderConfirmation,
-        pageBuilder: (context, state) => _buildPage(state, const OrderConfirmationScreen()),
+        pageBuilder: (context, state) =>
+            _buildPage(state, const OrderConfirmationScreen()),
       ),
       GoRoute(
         path: RouteNames.orderTracking,
-        pageBuilder: (context, state) => _buildPage(state, const OrderTrackingScreen()),
+        pageBuilder: (context, state) =>
+            _buildPage(state, const OrderTrackingScreen()),
       ),
       GoRoute(
         path: RouteNames.orderHistory,
-        pageBuilder: (context, state) => _buildPage(state, const OrderHistoryScreen()),
+        pageBuilder: (context, state) =>
+            _buildPage(state, const OrderHistoryScreen()),
       ),
       GoRoute(
         path: RouteNames.notifications,
-        pageBuilder: (context, state) => _buildPage(state, const NotificationsScreen()),
+        pageBuilder: (context, state) =>
+            _buildPage(state, const NotificationsScreen()),
       ),
       GoRoute(
         path: RouteNames.storeLocator,
-        pageBuilder: (context, state) => _buildPage(state, const StoreLocatorScreen()),
+        pageBuilder: (context, state) =>
+            _buildPage(state, const StoreLocatorScreen()),
       ),
       GoRoute(
         path: RouteNames.settings,
-        pageBuilder: (context, state) => _buildPage(state, const SettingsScreen()),
+        pageBuilder: (context, state) =>
+            _buildPage(state, const SettingsScreen()),
       ),
     ],
   );
@@ -142,10 +166,13 @@ class AppRouter {
         return FadeTransition(
           opacity: CurvedAnimation(parent: animation, curve: Curves.easeOut),
           child: SlideTransition(
-            position: Tween(
-              begin: const Offset(0.05, 0),
-              end: Offset.zero,
-            ).animate(CurvedAnimation(parent: animation, curve: Curves.easeOutCubic)),
+            position: Tween(begin: const Offset(0.05, 0), end: Offset.zero)
+                .animate(
+                  CurvedAnimation(
+                    parent: animation,
+                    curve: Curves.easeOutCubic,
+                  ),
+                ),
             child: child,
           ),
         );
@@ -153,7 +180,10 @@ class AppRouter {
     );
   }
 
-  static CustomTransitionPage _buildFadePage(GoRouterState state, Widget child) {
+  static CustomTransitionPage _buildFadePage(
+    GoRouterState state,
+    Widget child,
+  ) {
     return CustomTransitionPage(
       key: state.pageKey,
       child: child,
@@ -167,17 +197,19 @@ class AppRouter {
     );
   }
 
-  static CustomTransitionPage _buildBottomPage(GoRouterState state, Widget child) {
+  static CustomTransitionPage _buildBottomPage(
+    GoRouterState state,
+    Widget child,
+  ) {
     return CustomTransitionPage(
       key: state.pageKey,
       child: child,
       transitionDuration: const Duration(milliseconds: 400),
       transitionsBuilder: (context, animation, secondaryAnimation, child) {
         return SlideTransition(
-          position: Tween(
-            begin: const Offset(0, 1),
-            end: Offset.zero,
-          ).animate(CurvedAnimation(parent: animation, curve: Curves.easeOutCubic)),
+          position: Tween(begin: const Offset(0, 1), end: Offset.zero).animate(
+            CurvedAnimation(parent: animation, curve: Curves.easeOutCubic),
+          ),
           child: child,
         );
       },

@@ -22,19 +22,23 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     _OnboardingData(
       title: 'Order your\nfavorite drink',
       subtitle: 'Skip the line and order ahead with the Starbucks app.',
-      imageUrl: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600',
+      imageUrl:
+          'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600',
       gradient: [Color(0xFF1E3932), Color(0xFF00704A)],
     ),
     _OnboardingData(
       title: 'Earn stars\nwith every sip',
-      subtitle: 'Collect stars on every purchase and redeem them for free drinks.',
-      imageUrl: 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=600',
+      subtitle:
+          'Collect stars on every purchase and redeem them for free drinks.',
+      imageUrl:
+          'https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=600',
       gradient: [Color(0xFF2C1810), Color(0xFF8B4513)],
     ),
     _OnboardingData(
       title: 'Customize\nyour perfect cup',
       subtitle: 'Adjust size, milk, syrups and more — exactly how you like it.',
-      imageUrl: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=600',
+      imageUrl:
+          'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=600',
       gradient: [Color(0xFF004E3C), Color(0xFF00704A)],
     ),
   ];
@@ -56,7 +60,11 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             itemCount: _pages.length,
             onPageChanged: (i) => setState(() => _currentPage = i),
             itemBuilder: (context, index) {
-              return _OnboardingPage(data: _pages[index], pageController: _pageController, index: index);
+              return _OnboardingPage(
+                data: _pages[index],
+                pageController: _pageController,
+                index: index,
+              );
             },
           ),
           // Bottom controls
@@ -87,7 +95,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      _TextButton(label: 'Skip', onTap: () => context.go(RouteNames.login)),
+                      _TextButton(
+                        label: 'Skip',
+                        onTap: () => context.go(RouteNames.login),
+                      ),
                       GestureDetector(
                         onTap: () => _pageController.nextPage(
                           duration: const Duration(milliseconds: 400),
@@ -100,7 +111,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                             color: AppColors.primaryGreen,
                             shape: BoxShape.circle,
                           ),
-                          child: const Icon(Icons.arrow_forward_rounded, color: Colors.white),
+                          child: const Icon(
+                            Icons.arrow_forward_rounded,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
                     ],
@@ -125,7 +139,12 @@ class _TextButton extends StatelessWidget {
       onTap: onTap,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Text(label, style: AppTypography.labelMedium(context).copyWith(color: AppColors.textSecondary)),
+        child: Text(
+          label,
+          style: AppTypography.labelMedium(
+            context,
+          ).copyWith(color: AppColors.textSecondary),
+        ),
       ),
     );
   }
@@ -190,7 +209,7 @@ class _OnboardingPage extends StatelessWidget {
                 child: Image.network(
                   data.imageUrl,
                   fit: BoxFit.cover,
-                  errorBuilder: (_, __, ___) => const SizedBox.shrink(),
+                  errorBuilder: (_, _, _) => const SizedBox.shrink(),
                 ),
               ),
             ),
@@ -216,9 +235,14 @@ class _OnboardingPage extends StatelessWidget {
                 ).animate().fadeIn(duration: 400.ms).slideY(begin: 0.2, end: 0),
                 const SizedBox(height: 12),
                 Text(
-                  data.subtitle,
-                  style: AppTypography.bodyLarge(context).copyWith(color: AppColors.textSecondary),
-                ).animate(delay: 100.ms).fadeIn(duration: 400.ms).slideY(begin: 0.2, end: 0),
+                      data.subtitle,
+                      style: AppTypography.bodyLarge(
+                        context,
+                      ).copyWith(color: AppColors.textSecondary),
+                    )
+                    .animate(delay: 100.ms)
+                    .fadeIn(duration: 400.ms)
+                    .slideY(begin: 0.2, end: 0),
               ],
             ),
           ),
